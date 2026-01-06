@@ -1,1 +1,478 @@
+import React, { useState } from ‘react’;
+import { Coins, Flame, Users, TrendingUp, Shield, Zap } from ‘lucide-react’;
 
+const Sky4Tokenomics = () => {
+const [activeTab, setActiveTab] = useState(‘overview’);
+
+const tabs = [
+{ id: ‘overview’, label: ‘Overview’, icon: Coins },
+{ id: ‘staking’, label: ‘Staking’, icon: Shield },
+{ id: ‘burning’, label: ‘Burn Mechanics’, icon: Flame },
+{ id: ‘governance’, label: ‘Governance’, icon: Users },
+{ id: ‘growth’, label: ‘Growth Strategy’, icon: TrendingUp }
+];
+
+return (
+<div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white p-8">
+<div className="max-w-6xl mx-auto">
+{/* Header */}
+<div className="text-center mb-12">
+<div className="flex items-center justify-center gap-3 mb-4">
+<Zap className="w-12 h-12 text-blue-400" />
+<h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+SKY4
+</h1>
+</div>
+<p className="text-xl text-blue-200">NFT Marketplace Token Economy</p>
+<p className="text-sm text-slate-400 mt-2">Stake • Burn • Govern • Elevate</p>
+</div>
+
+```
+    {/* Tab Navigation */}
+    <div className="flex flex-wrap gap-2 mb-8 justify-center">
+      {tabs.map(tab => {
+        const Icon = tab.icon;
+        return (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg transition-all ${
+              activeTab === tab.id
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/50'
+                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+            }`}
+          >
+            <Icon className="w-4 h-4" />
+            {tab.label}
+          </button>
+        );
+      })}
+    </div>
+
+    {/* Content Panels */}
+    <div className="bg-slate-800/50 backdrop-blur rounded-2xl p-8 shadow-2xl border border-slate-700">
+      {activeTab === 'overview' && (
+        <div className="space-y-6">
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">Token Overview</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Token Details</h3>
+              <ul className="space-y-3 text-slate-300">
+                <li><span className="text-blue-400 font-semibold">Name:</span> Sky4 Token</li>
+                <li><span className="text-blue-400 font-semibold">Symbol:</span> SKY4</li>
+                <li><span className="text-blue-400 font-semibold">Total Supply:</span> 100,000,000 SKY4</li>
+                <li><span className="text-blue-400 font-semibold">Type:</span> Deflationary Utility Token</li>
+                <li><span className="text-blue-400 font-semibold">Network:</span> Ethereum / Polygon</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Distribution</h3>
+              <ul className="space-y-2 text-slate-300">
+                <li className="flex justify-between">
+                  <span>Public Sale / Liquidity</span>
+                  <span className="text-blue-400 font-semibold">45%</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Staking Rewards Pool</span>
+                  <span className="text-blue-400 font-semibold">20%</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Team (4yr vest)</span>
+                  <span className="text-blue-400 font-semibold">15%</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Treasury / Governance</span>
+                  <span className="text-blue-400 font-semibold">10%</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Marketing & Partnerships</span>
+                  <span className="text-blue-400 font-semibold">10%</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 p-6 rounded-xl border border-blue-700/50 mt-6">
+            <h3 className="text-xl font-semibold text-cyan-400 mb-3">Core Utilities</h3>
+            <div className="grid md:grid-cols-3 gap-4 text-sm">
+              <div>
+                <p className="text-blue-400 font-semibold mb-2">Marketplace</p>
+                <p className="text-slate-300">Trading fee discounts, premium listings, exclusive drops</p>
+              </div>
+              <div>
+                <p className="text-blue-400 font-semibold mb-2">Staking</p>
+                <p className="text-slate-300">Earn marketplace fees, unlock tiers, early access</p>
+              </div>
+              <div>
+                <p className="text-blue-400 font-semibold mb-2">Governance</p>
+                <p className="text-slate-300">Vote on features, curate collections, treasury control</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'staking' && (
+        <div className="space-y-6">
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">Staking System</h2>
+          
+          <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700 mb-6">
+            <h3 className="text-xl font-semibold text-cyan-400 mb-4">Tier System</h3>
+            <div className="space-y-4">
+              {[
+                { name: 'Sky Explorer', stake: '1,000', apy: '8%', color: 'text-slate-400', benefits: 'Basic fee discounts, community access' },
+                { name: 'Sky Rider', stake: '10,000', apy: '12%', color: 'text-blue-400', benefits: 'Enhanced discounts, early NFT access, verified badge' },
+                { name: 'Sky Master', stake: '50,000', apy: '18%', color: 'text-purple-400', benefits: 'Premium features, governance power, exclusive drops' },
+                { name: 'Sky Legend', stake: '250,000', apy: '25%', color: 'text-yellow-400', benefits: 'VIP access, maximum governance weight, personal concierge' }
+              ].map((tier, idx) => (
+                <div key={idx} className="bg-slate-800/50 p-4 rounded-lg border border-slate-600">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className={`text-lg font-bold ${tier.color}`}>{tier.name}</h4>
+                    <div className="text-right">
+                      <p className="text-sm text-slate-400">Minimum Stake</p>
+                      <p className="text-lg font-bold text-white">{tier.stake} SKY4</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mt-3">
+                    <p className="text-sm text-slate-300">{tier.benefits}</p>
+                    <p className="text-green-400 font-semibold">{tier.apy} APY</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Lock Periods</h3>
+              <ul className="space-y-3 text-slate-300">
+                <li className="flex justify-between">
+                  <span>Flexible (no lock)</span>
+                  <span className="text-blue-400">Base APY</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>30 days</span>
+                  <span className="text-blue-400">+2% bonus</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>90 days</span>
+                  <span className="text-blue-400">+5% bonus</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>365 days</span>
+                  <span className="text-blue-400">+10% bonus</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Reward Sources</h3>
+              <ul className="space-y-3 text-slate-300">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>50% of marketplace trading fees distributed to stakers</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>NFT listing fees shared proportionally</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>Premium feature revenue allocation</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-400">•</span>
+                  <span>Partnership revenue sharing</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'burning' && (
+        <div className="space-y-6">
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">Burn Mechanisms</h2>
+          
+          <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 p-6 rounded-xl border border-orange-700/50 mb-6">
+            <h3 className="text-xl font-semibold text-orange-400 mb-3">Deflationary Design</h3>
+            <p className="text-slate-300">Multiple burn mechanisms ensure SKY4 becomes increasingly scarce over time, creating upward price pressure as the ecosystem grows.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                title: 'Trading Fee Burns',
+                rate: '0.5% per trade',
+                description: 'Every NFT sale on Sky4 marketplace burns 0.5% of the transaction value in SKY4 tokens',
+                impact: 'High Volume Impact'
+              },
+              {
+                title: 'Listing Fee Burns',
+                rate: '10 SKY4 per listing',
+                description: 'Creating NFT listings requires a small burn fee, preventing spam while reducing supply',
+                impact: 'Consistent Burn Rate'
+              },
+              {
+                title: 'Governance Proposal Burns',
+                rate: '1,000 SKY4',
+                description: 'Submitting governance proposals requires burning tokens to ensure quality proposals',
+                impact: 'Quality Control'
+              },
+              {
+                title: 'Failed Auction Burns',
+                rate: '5% of reserve',
+                description: 'NFT auctions that fail to meet reserve price burn a portion of the listing fee',
+                impact: 'Market Efficiency'
+              },
+              {
+                title: 'Premium Feature Burns',
+                rate: 'Variable',
+                description: 'Verified badges, featured listings, and promotional tools require token burns',
+                impact: 'Revenue Generation'
+              },
+              {
+                title: 'Buyback & Burn',
+                rate: '10% of profits',
+                description: 'Platform profits used to buy SKY4 from market and burn permanently',
+                impact: 'Long-term Value'
+              }
+            ].map((mechanism, idx) => (
+              <div key={idx} className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+                <div className="flex items-start gap-3 mb-3">
+                  <Flame className="w-6 h-6 text-orange-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h4 className="text-lg font-bold text-white mb-1">{mechanism.title}</h4>
+                    <p className="text-orange-400 font-semibold text-sm">{mechanism.rate}</p>
+                  </div>
+                </div>
+                <p className="text-slate-300 text-sm mb-3">{mechanism.description}</p>
+                <p className="text-xs text-blue-400 font-semibold">{mechanism.impact}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700 mt-6">
+            <h3 className="text-xl font-semibold text-cyan-400 mb-4">Projected Burn Rate</h3>
+            <p className="text-slate-300 mb-4">Based on marketplace activity projections:</p>
+            <ul className="space-y-2 text-slate-300">
+              <li className="flex justify-between">
+                <span>Year 1: Low activity</span>
+                <span className="text-orange-400 font-semibold">~500K SKY4 burned</span>
+              </li>
+              <li className="flex justify-between">
+                <span>Year 2: Growing adoption</span>
+                <span className="text-orange-400 font-semibold">~2M SKY4 burned</span>
+              </li>
+              <li className="flex justify-between">
+                <span>Year 3: Mature marketplace</span>
+                <span className="text-orange-400 font-semibold">~5M SKY4 burned</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'governance' && (
+        <div className="space-y-6">
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">Governance System</h2>
+          
+          <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700 mb-6">
+            <h3 className="text-xl font-semibold text-cyan-400 mb-4">Voting Power</h3>
+            <p className="text-slate-300 mb-4">Governance uses a hybrid model balancing token holdings with active participation:</p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-slate-800/50 p-4 rounded-lg">
+                <h4 className="text-blue-400 font-semibold mb-2">Base Voting Power</h4>
+                <p className="text-sm text-slate-300">1 staked SKY4 = 1 vote (must be staked to vote)</p>
+              </div>
+              <div className="bg-slate-800/50 p-4 rounded-lg">
+                <h4 className="text-blue-400 font-semibold mb-2">Participation Multiplier</h4>
+                <p className="text-sm text-slate-300">Active voters get 1.5x voting power on future proposals</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+            <h3 className="text-xl font-semibold text-cyan-400 mb-4">Governance Scope</h3>
+            <div className="space-y-3">
+              {[
+                { category: 'Marketplace Features', items: ['New features, UI changes, integration priorities'] },
+                { category: 'Fee Structure', items: ['Trading fees, listing fees, premium pricing'] },
+                { category: 'Collection Curation', items: ['Verified status, featured collections, partnerships'] },
+                { category: 'Treasury Management', items: ['Grant programs, marketing budget, strategic investments'] },
+                { category: 'Token Economics', items: ['Staking rewards adjustment, burn rate modifications'] },
+                { category: 'Protocol Upgrades', items: ['Smart contract updates, security improvements'] }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-slate-800/50 p-4 rounded-lg">
+                  <h4 className="text-purple-400 font-semibold mb-2">{item.category}</h4>
+                  <p className="text-sm text-slate-300">{item.items[0]}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mt-6">
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Proposal Process</h3>
+              <ol className="space-y-3 text-slate-300">
+                <li className="flex gap-3">
+                  <span className="text-blue-400 font-bold">1.</span>
+                  <span>Submit proposal (requires 1000 SKY4 burn + 100K SKY4 staked)</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-blue-400 font-bold">2.</span>
+                  <span>Community discussion period (3 days)</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-blue-400 font-bold">3.</span>
+                  <span>Voting period (5 days)</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-blue-400 font-bold">4.</span>
+                  <span>Execution timelock (2 days if passed)</span>
+                </li>
+              </ol>
+            </div>
+
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Passing Thresholds</h3>
+              <ul className="space-y-3 text-slate-300">
+                <li className="flex justify-between">
+                  <span>Standard proposals</span>
+                  <span className="text-blue-400 font-semibold">51% approval</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Economic changes</span>
+                  <span className="text-blue-400 font-semibold">66% approval</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Protocol upgrades</span>
+                  <span className="text-blue-400 font-semibold">75% approval</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Minimum quorum</span>
+                  <span className="text-blue-400 font-semibold">10% participation</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'growth' && (
+        <div className="space-y-6">
+          <h2 className="text-3xl font-bold text-blue-400 mb-6">Growth Strategy</h2>
+          
+          <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 p-6 rounded-xl border border-green-700/50 mb-6">
+            <h3 className="text-xl font-semibold text-green-400 mb-3">Scalability Built-In</h3>
+            <p className="text-slate-300">Sky4 is designed to start small and scale efficiently as your marketplace grows, with mechanisms that become more powerful with increased adoption.</p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Phase 1: Launch (Months 1-6)</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-blue-400 font-semibold mb-2">Focus Areas:</p>
+                  <ul className="space-y-1 text-slate-300">
+                    <li>• Initial liquidity provision</li>
+                    <li>• Onboard first 10-20 quality creators</li>
+                    <li>• Launch staking pools</li>
+                    <li>• Community building</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-blue-400 font-semibold mb-2">Key Metrics:</p>
+                  <ul className="space-y-1 text-slate-300">
+                    <li>• 1,000-5,000 SKY4 holders</li>
+                    <li>• $50K-$250K daily volume</li>
+                    <li>• 30-40% tokens staked</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Phase 2: Growth (Months 6-18)</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-blue-400 font-semibold mb-2">Focus Areas:</p>
+                  <ul className="space-y-1 text-slate-300">
+                    <li>• Major artist partnerships</li>
+                    <li>• Enhanced platform features</li>
+                    <li>• Cross-chain expansion</li>
+                    <li>• Mobile app launch</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-blue-400 font-semibold mb-2">Key Metrics:</p>
+                  <ul className="space-y-1 text-slate-300">
+                    <li>• 10,000-50,000 SKY4 holders</li>
+                    <li>• $500K-$2M daily volume</li>
+                    <li>• Active governance participation</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700">
+              <h3 className="text-xl font-semibold text-cyan-400 mb-4">Phase 3: Maturity (18+ months)</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <p className="text-blue-400 font-semibold mb-2">Focus Areas:</p>
+                  <ul className="space-y-1 text-slate-300">
+                    <li>• Enterprise partnerships</li>
+                    <li>• Advanced DeFi integration</li>
+                    <li>• DAO transition</li>
+                    <li>• Ecosystem expansion</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-blue-400 font-semibold mb-2">Key Metrics:</p>
+                  <ul className="space-y-1 text-slate-300">
+                    <li>• 100,000+ SKY4 holders</li>
+                    <li>• Top 10 NFT marketplace</li>
+                    <li>• Self-sustaining ecosystem</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-700 mt-6">
+            <h3 className="text-xl font-semibold text-cyan-400 mb-4">Value Drivers</h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+                <p className="text-2xl font-bold text-green-400 mb-2">📈</p>
+                <p className="text-sm text-slate-300">More trading = More burns & staking rewards</p>
+              </div>
+              <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+                <p className="text-2xl font-bold text-blue-400 mb-2">🔒</p>
+                <p className="text-sm text-slate-300">Staking locks supply, reducing sell pressure</p>
+              </div>
+              <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+                <p className="text-2xl font-bold text-purple-400 mb-2">⚡</p>
+                <p className="text-sm text-slate-300">Utility drives demand for SKY4 tokens</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+
+    {/* Footer CTA */}
+    <div className="text-center mt-12 p-6 bg-gradient-to-r from-blue-900/30 to-cyan-900/30 rounded-xl border border-blue-700/50">
+      <h3 className="text-2xl font-bold text-white mb-2">Ready to Launch Sky4?</h3>
+      <p className="text-slate-300 mb-4">This tokenomics framework provides a solid foundation. Next steps: smart contract development, legal review, audit, and community building.</p>
+      <p className="text-sm text-slate-400">Note: This is a design document. Requires technical implementation, legal compliance, and security audits before launch.</p>
+    </div>
+  </div>
+</div>
+```
+
+);
+};
+
+export default Sky4Tokenomics;
