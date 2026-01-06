@@ -1,1 +1,49 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Sky4Staking is ReentrancyGuard, Ownable {
+    IERC20 public immutable sky4;
+
+    struct StakeInfo {
+        uint256 amount;
+        uint256 unlockTime;
+    }
+
+    mapping(address => StakeInfo) public stakes;
+    uint256 public totalStaked;
+
+    constructor(address _sky4) {
+        sky4 = IERC20(_sky4);
+    }
+
+    function stake(uint256 amount, uint256 lockDays) external nonReentrant {
+        require(amount > 0, "Zero stake");
+
+        uint256 unlock = block.timestamp + (lockDays * 1 days);
+
+        sky4.transferFrom(msg.sender, address(this), amount);
+
+        stakes[msg.sender].amount += amount;
+        stakes[msg.sender].unlockTime = unlock;
+        totalStaked += amount;
+    }
+
+    function unstake(uint256 amount) external nonReentrant {
+        StakeInfo storage s = stakes[msg.sender];
+        require(block.timestamp >= s.unlockTime, "Locked");
+        require(amount <= s.amount, "Too much");
+
+        s.amount -= amount;
+        totalStaked -= amount;
+
+        sky4.transfer(msg.sender, amount);
+    }
+
+    function votingPower(address user) external view returns (uint256) {
+        return stakes[user].amount;
+    }
+}
